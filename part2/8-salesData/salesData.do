@@ -60,6 +60,18 @@ gen qq=quarter(t)
 
 * END: Lifted from Carrillo's Empirical Project Pt II PDF
 
+tab yy
+keep if yy>1966
+* Excluding transactions not at arms' length.
+sum price, de
+keep if price>5000 
+* Carrillo used 5000 as the arms' length cutoff.
+drop if price>10000000 
+* Carrillo excluded "incredibly expensive homes"
+
+sum price, de
+
+
 * ENDING CODE, "WIND DOWN"
 save "$path/8-salesData/salesData.dta", replace
 clear all
