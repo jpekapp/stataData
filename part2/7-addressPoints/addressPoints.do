@@ -3,6 +3,13 @@
 clear all
 
 global path "/Users/g21860132/Desktop/stataData/part2"
+
+local origdir "`c(pwd)'"
+
+cd "$path/7-addressPoints"
+unzipfile "addressPoints.csv.zip", replace
+cd "`origdir'"
+
 import delimited "$path/7-addressPoints/addressPoints.csv", clear
 
 capture confirm variable parcelidentificationnumber, exact

@@ -2,8 +2,13 @@
 
 clear all
 
-global path "/Users/g21860132/Desktop/stataData/part2/8-salesData"
-import delimited "$path/salesData.csv"
+global path "/Users/g21860132/Desktop/stataData/part2"
+
+cd "$path/8-salesData"
+
+unzipfile "salesData.csv.zip", replace
+
+import delimited "$path/8-salesData/salesData.csv", clear
 
 describe
 
@@ -54,3 +59,8 @@ gen mm=month(t)
 gen qq=quarter(t)
 
 * END: Lifted from Carrillo's Empirical Project Pt II PDF
+
+* ENDING CODE, "WIND DOWN"
+save "$path/8-salesData/salesData.dta", replace
+clear all
+cd "$path"
